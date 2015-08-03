@@ -138,7 +138,7 @@ var FeederInfo = function(id, value, description) {
     if (value != null ) {
         converted_value = parseInt(value);
     } else {
-        console.log('invalid value: ' + value);
+        console.log('invalid value at ' + id );
     }
     this.value = converted_value;
     this.description = description;

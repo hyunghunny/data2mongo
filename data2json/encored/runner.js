@@ -35,7 +35,7 @@ function importDaybyDay(startDate, toDate, option, callback) {
     
     var endDate = new Date(startDate.getTime() + day_span);
     
-    console.log('load data from ' + startDate + ' to ' + endDate);
+    console.log('load data from ' + startDate.toLocaleString() + ' to ' + endDate.toLocaleString());
     loader.load(option.type, startDate, endDate, function (data) {
         var callback = callback; // XXX: to passing callback to importer's callback
         
