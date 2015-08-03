@@ -1,16 +1,27 @@
 ﻿var loader = require('./encored_data_loader.js');
 var reducer = require('../db_reduce.js');
 var day_span = 86400000;
-var option = {
+
+var quarters_option = {
     db: "Encored",
-    collection: "site73_hour_new", //"site73_15min_new", 
-    type : 'hourly', //'15min',
-    delta : 60*60 // 15 * 60
+    collection: "site73_15min_new", 
+    type : '15min',
+    delta : 15 * 60
 }
+
+var hours_option = {
+    db: "Encored",
+    collection: "site73_hour_new", 
+    type : 'hourly',
+    delta : 60 * 60 
+}
+
+// select database type
+var option = quarters_option;
 
 exports.run = function () {
 
-    var fromDate = new Date('2015-6-1');//new Date('2014-8-5');
+    var fromDate = new Date('2014-8-5');
     var toDate = new Date('2015-7-31');
 
 
