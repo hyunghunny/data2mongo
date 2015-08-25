@@ -1,10 +1,34 @@
 ﻿{
-  "name": "csv2json",
-  "version": "0.0.0",
-  "description": "csv2json",
+  "name": "data2mongodb",
+  "version": "0.1.0",
+  "description": "data imigration job scheduler",
   "main": "app.js",
-  "author": {
-    "name": "형헌",
-    "email": ""
-  }
+  "author": "webofthink <webofthink@snu.ac.kr>",
+  "dependencies": {
+    "bson": "^0.3.1",
+    "csvtojson": "^0.3.19",
+    "gridfs-stream": "^1.1.1",
+    "line-reader": "^0.2.4",
+    "mongodb": "^2.0.25",
+    "mongoose": "^4.0.1",
+    "node-rest-client": "^1.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyunghunny/data2mongo.git"
+  },
+  "keywords": [
+    "data",
+    "import",
+    "mongodb"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hyunghunny/data2mongo/issues"
+  },
+  "homepage": "https://github.com/hyunghunny/data2mongo"
 }
