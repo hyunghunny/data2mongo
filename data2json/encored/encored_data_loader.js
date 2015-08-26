@@ -27,7 +27,7 @@ exports.load = function (measureType, startDate, endDate, callback) {
     
     console.log(requestURL);
     client.get(requestURL, args, function (data, response) {
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
         callback(data);
     })
 }

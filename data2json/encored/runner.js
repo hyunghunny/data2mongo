@@ -17,7 +17,7 @@ var hours_option = {
 }
 
 // select database type
-var option = hours_option;
+var option = quarters_option; //hours_option;
 
 exports.run = function () {
 

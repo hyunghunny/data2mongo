@@ -11,7 +11,8 @@
     "line-reader": "^0.2.4",
     "mongodb": "^2.0.25",
     "mongoose": "^4.0.1",
-    "node-rest-client": "^1.5.1"
+    "node-rest-client": "^1.5.1",
+    "cron":  "1.0.9"
   },
   "devDependencies": {},
   "scripts": {
