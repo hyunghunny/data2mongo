@@ -1,5 +1,5 @@
 ﻿var loader = require('./encored_data_loader.js');
-var reducer = require('../db_reduce.js');
+//var reducer = require('../db_reduce.js');
 var day_span = 86400000;
 
 var quarters_option = {
@@ -21,8 +21,8 @@ var option = hours_option;
 
 exports.run = function () {
 
-    var fromDate = new Date('2015-8-1');//new Date('2014-8-5');
-    var toDate = new Date('2015-8-25');
+    var fromDate = new Date('2015-8-24');//new Date('2014-8-5');
+    var toDate = new Date('2015-8-26');
 
 
     importDaybyDay(fromDate, toDate, option, function (result) {
