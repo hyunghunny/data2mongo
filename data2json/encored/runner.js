@@ -17,12 +17,12 @@ var hours_option = {
 }
 
 // select database type
-var option = quarters_option; //hours_option;
+var option = hours_option; //quarters_option; //
 
 exports.run = function () {
 
-    var fromDate = new Date('2015-8-24');//new Date('2014-8-5');
-    var toDate = new Date('2015-8-26');
+    var fromDate = new Date('2015-8-29');//new Date('2014-8-5');
+    var toDate = new Date('2015-8-31');
 
 
     importDaybyDay(fromDate, toDate, option, function (result) {
