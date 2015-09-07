@@ -25,7 +25,7 @@ function updateQuarters() {
     fromDate.setMinutes(fromDate.getMinutes() - 15);
     fromDate.setSeconds(0);
     fromDate.setMilliseconds(0);
-    console.log('[15MIN] update from ' + fromDate + ' to ' + now);
+    console.log('[' + now.toTimeString() + ']' + '[15MIN] update from ' + fromDate.toLocaleString() + ' to ' + now.toLocaleString());
     // TODO: what will be the start date time?
     importData(fromDate, now, quarters_option);
     
@@ -41,7 +41,7 @@ function updateHours() {
     fromDate.setMinutes(0);
     fromDate.setSeconds(0);
     fromDate.setMilliseconds(0);
-    console.log('[HOUR] update from ' + fromDate + ' to ' + now);
+    console.log('[' + now.toTimeString() + ']' + '[HOUR] update from ' + fromDate.toLocaleString() + ' to ' + now.toLocaleString());
     importData(fromDate, now, hours_option);
 }
 
@@ -58,7 +58,7 @@ function importData(startDate, endDate, option) {
         var transformedArray = transformer.transform(data, unit);
         
         importer.import(option, transformedArray, function () {
-            console.log('database imported completely.');
+            //console.log('database imported completely.');
         });
     });
 }

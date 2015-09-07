@@ -17,11 +17,11 @@ var hours_option = {
 }
 
 // select database type
-var option = quarters_option; //hours_option;
+var option = hours_option;//quarters_option; //hours_option;
 
 exports.run = function () {
     
-    var fromDate = new Date('2015-9-4');//new Date('2014-8-5');
+    var fromDate = new Date('2015-9-7');//new Date('2014-8-5');
     var toDate = new Date('2015-9-7');
     
     
