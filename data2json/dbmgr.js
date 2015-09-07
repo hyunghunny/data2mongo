@@ -3,55 +3,55 @@ var mongodb = require('mongodb');
 var self;
 
 var MongoDBManager = function (options) {
+    /*
     var dbServer = new mongodb.Server(
         options.host, 
         options.port, 
-        { auto_reconnect: true }
+        { auto_reconnect: false }
     );
     
     var db = new mongodb.Db(options.dbName, 
     dbServer, 
     { w: 1 }
     );
-    
-    this.database = db;
+    */
+    this.url = 'mongodb://' + options.host + ':' + options.port + '/' + options.dbName;
+    this.database = null;
     this.collection = null;
     this.prevObj = null;
     this.options = options;
-      
-    
-    process.on('exit', function (code) {
-        // close database on exit.
-        if (db) {
-            db.close();
-        }
-            
-    });
-
 }
 
 MongoDBManager.prototype.connect = function (callback) {
     var self = this;
-    var db = self.database;
-    db.open(function (err, connection) {
+    
+    var client = mongodb.MongoClient;
+
+    client.connect(this.url, function (err, db) {
         if (err) {
             console.log(err);
         } else {
-            
+            self.database = db;
             db.collection(self.options.collectionName, function (err, collection) {
                 if (err) {
                     console.log(err);
                 }
-                //console.log(self.options.collectionName + ' collection connected successfully.');
                 self.collection = collection;
                 
                 callback(err);
             });
         }
-       
- 
     });
 }
+
+MongoDBManager.prototype.disconnect = function () {
+    if (this.database) {
+        this.database.close();
+        console.log('data base is disconnected properly.');
+    }
+}
+
+
 MongoDBManager.prototype.insert = function (obj, callback) {
     var self = this;
     if (!this.collection) {
@@ -77,20 +77,21 @@ MongoDBManager.prototype.upsert = function (obj, callback) {
         return;
     }
    
-    this.collection.update({ _id: obj._id }, obj, {safe: true, upsert: true}, function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-        if (callback) {
-            //console.log(obj._id + ' is upserted');
-            callback(result);
-        } else {
-            //console.log('upsert executed : ' + result);
-        }
-        
+    this.collection.update({ _id: obj._id }, 
+        obj, { safe: true, upsert: true }, 
+        function (err, result) {
+            if (err) {
+                console.log(err);
+            }
+            if (callback) {
+                //console.log(obj._id + ' is upserted');
+                callback(result);
+
+            } else {
+                console.log('upsert executed : ' + result);
+            }        
     });
 }
-
 
 MongoDBManager.prototype.removeAll = function (callback) {
     var self = this;

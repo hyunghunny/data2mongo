@@ -3,5 +3,5 @@
 var runner = require("./encored/runner.js");
 var sync = require("./encored/sync.js");
 
-runner.run();
-//sync.start();
+//runner.run();
+sync.start();

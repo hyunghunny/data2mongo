@@ -1,6 +1,8 @@
 ﻿
 var CronJob = require('cron').CronJob;
 var loader = require('./encored_data_loader.js');
+var importer = require('../json_import.js');
+var transformer = require('./json_transform.js');
 
 var quarters_option = {
     db: "Encored",
@@ -51,8 +53,6 @@ function importData(startDate, endDate, option) {
             console.log('error occurred: ' + data);
             return;
         }
-        var importer = require('../json_import.js');
-        var transformer = require('./json_transform.js');
         var unit = 1; // XXX:Do not align unit of measurement 
         
         var transformedArray = transformer.transform(data, unit);

@@ -1,6 +1,8 @@
-﻿exports.import = function (option, jsonArray, cb) {
-    var DBManager = require('./dbmgr.js');
-    var preprocessor = require('./encored/preprocessor.js');
+﻿var DBManager = require('./dbmgr.js');
+var preprocessor = require('./encored/preprocessor.js');
+
+exports.import = function (option, jsonArray, cb) {
+    
     
     var mongodbOption = {
         host: "datascience.snu.ac.kr",
@@ -9,24 +11,23 @@
         collectionName: option.collection
     }
     
-    var connectSuccessCallback = function (err) {
+    var connectCb = function (err) {
         //console.log(mongodbOption.dbName + ' DB connected');
         if (err == null) {
             jsonArray.forEach(function (val, idx, array) {
                 var jsonObj = jsonArray[idx];
                 var commitObj = preprocessor.process(jsonObj, option.delta);
-                //console.log(commitObj);
-                if (commitObj._id == 1431910800) {
-                    console.log(JSON.stringify(commitObj));
-                }
+
                 dbmgr.upsert(commitObj);
             });
+        } else {
+            console.log('db connnection failed.');
         }
-        cb();
+        cb(dbmgr);
     }
     
     var dbmgr = new DBManager(mongodbOption);
     
     // connect to mongodb and insert data one by one
-    dbmgr.connect(connectSuccessCallback);    
+    dbmgr.connect(connectCb);
 }
