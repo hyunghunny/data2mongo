@@ -81,7 +81,9 @@ MongoDBManager.prototype.upsert = function (obj, callback) {
         obj, { safe: true, upsert: true }, 
         function (err, result) {
             if (err) {
-                console.log(err);
+                console.err(err);
+                //terminate node if error happens
+                process.exit(-1);
             }
             if (callback) {
                 //console.log(obj._id + ' is upserted');
